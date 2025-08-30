@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TerraQuest | Adventure Travel Destinations</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #1a3c5a;
+      --secondary: #2a6bb3;
+      --accent: #ff9e1b;
+      --dark: #0f253c;
+      --light: #e9f1f8;
+      --card: #ffffff;
+      --gradient: linear-gradient(135deg, #1a3c5a, #2a6bb3);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      --radius: 16px;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(to bottom, #f7f9fc, #e6eef8);
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Header & Navigation */
+    header {
+      background: var(--gradient);
+      color: white;
+      padding: 0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'%3E%3Cpath fill='rgba(255,255,255,0.07)' d='M0 0h100v100H0z'/%3E%3Cpath d='M0 0l100 100M100 0L0 100' stroke='rgba(255,255,255,0.1)' stroke-width='1'/%3E%3C/svg%3E");
+      z-index: 0;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+      text-decoration: none;
+      z-index: 1;
+    }
+
+    .logo i {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero p {
+      font-size: 1.4rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(255, 158, 27, 0.4);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 158, 27, 0.5);
+    }
+
+    /* Main Content */
+    .container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      display: inline-block;
+    }
+
+    .section-title h2::after {
+      content: "";
+      display: block;
+      width: 60%;
+      height: 4px;
+      background: var(--accent);
+      margin: 0.5rem auto;
+      border-radius: 2px;
+    }
+
+    /* Destinations Grid */
+    .destinations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .destination-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .destination-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-image {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .destination-card:hover .card-image img {
+      transform: scale(1.1);
+    }
+
+    .card-content {
+      padding: 1.5rem;
+    }
+
+    .card-content h3 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-content p {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .activities-list {
+      list-style: none;
+      margin-top: 1rem;
+    }
+
+    .activities-list li {
+      padding: 0.5rem 0;
+      border-bottom: 1px dashed #e0e0e0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .activities-list li:last-child {
+      border-bottom: none;
+    }
+
+    .activities-list i {
+      color: var(--accent);
+    }
+
+    /* Comparison Table */
+    .table-container {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      margin-bottom: 4rem;
+      overflow-x: auto;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    .comparison-table th {
+      background: linear-gradient(180deg, #e8f1fa, #d8e5f2);
+      color: var(--primary);
+      font-weight: 600;
+      padding: 1.2rem;
+      text-align: left;
+    }
+
+    .comparison-table td {
+      padding: 1.2rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comparison-table tr:hover {
+      background-color: #f9fbfd;
+    }
+
+    .rating {
+      color: #ffc107;
+    }
+
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .gallery-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      height: 200px;
+      position: relative;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-item::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover::after {
+      opacity: 1;
+    }
+
+    /* Drag & Drop Section */
+    .drag-drop-section {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .drag-container {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .drag-source, .drag-target {
+      flex: 1;
+      min-height: 300px;
+    }
+
+    .drag-source {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .drag-item {
+      border-radius: 12px;
+      overflow: hidden;
+      height: 140px;
+      cursor: grab;
+      box-shadow: var(--shadow);
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .drag-item:active {
+      cursor: grabbing;
+    }
+
+    .drag-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .drag-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .drag-target {
+      background: linear-gradient(180deg, rgba(42, 107, 179, 0.05), transparent);
+      border: 3px dashed var(--secondary);
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .drag-target.highlight {
+      background: linear-gradient(180deg, rgba(42, 107, 179, 0.15), transparent);
+      border-color: var(--accent);
+    }
+
+    .drag-target i {
+      font-size: 3rem;
+      color: var(--secondary);
+      margin-bottom: 1rem;
+    }
+
+    .drag-target p {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .favorites-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+      min-height: 140px;
+    }
+
+    /* Trip Planner */
+    .trip-planner {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 3rem;
+      margin-bottom: 4rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 1rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(255, 158, 27, 0.2);
+    }
+
+    .budget-slider {
+      width: 100%;
+      height: 8px;
+      -webkit-appearance: none;
+      background: #d8e5f2;
+      border-radius: 4px;
+      margin-top: 1rem;
+    }
+
+    .budget-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .budget-output {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 1.2rem;
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    .submit-btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 1.2rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(255, 158, 27, 0.4);
+      display: block;
+      margin: 2rem auto 0;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 158, 27, 0.5);
+    }
+
+    /* Media Section */
+    .media-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .media-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .media-card h3 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+    }
+
+    .media-card audio,
+    .media-card video {
+      width: 100%;
+      border-radius: 8px;
+      margin-top: auto;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .lightbox-content img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 12px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+      border: 2px solid var(--accent);
+    }
+
+    .close-lightbox {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.5);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .close-lightbox:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .lightbox-caption {
+      color: white;
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 1.2rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      text-align: left;
+    }
+
+    .footer-section h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+    }
+
+    .footer-section p {
+      margin-bottom: 1rem;
+      opacity: 0.8;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: white;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      opacity: 0.7;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 900px) {
+      .media-section,
+      .drag-container {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero p {
+        font-size: 1.2rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2rem;
+      }
+      
+      .trip-planner {
+        padding: 2rem;
+      }
+
+      .drag-source {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-container {
+        padding: 1rem;
+      }
+      
+      .hero {
+        padding: 2rem 1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .container {
+        padding: 0 1rem;
+      }
+
+      .drag-drop-section {
+        padding: 1.5rem;
+      }
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animated {
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .delay-1 {
+      animation-delay: 0.2s;
+    }
+
+    .delay-2 {
+      animation-delay: 0.4s;
+    }
+
+    .delay-3 {
+      animation-delay: 0.6s;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <i class="fas fa-mountain"></i>
+        <span>TerraQuest</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Destinations</a></li>
+        <li><a href="#">Adventures</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="hero">
+      <h1>Discover Your Next Adventure</h1>
+      <p>Explore the world's most thrilling destinations with our expert guides</p>
+      <a href="#" class="cta-button">Start Exploring <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Destinations Section -->
+    <section class="section-title animated">
+      <h2>Adventure Destinations</h2>
+    </section>
+
+    <div class="destinations-grid">
+      <!-- Switzerland -->
+      <div class="destination-card animated delay-1">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4" alt="Swiss Alps">
+          <div class="card-badge">Adventure</div>
+        </div>
+        <div class="card-content">
+          <h3>Swiss Alps</h3>
+          <p>Experience the breathtaking beauty of the Swiss Alps with world-class skiing, hiking, and mountaineering.</p>
+          <ul class="activities-list">
+            <li><i class="fas fa-skiing"></i> Skiing & Snowboarding</li>
+            <li><i class="fas fa-hiking"></i> Alpine Hiking</li>
+            <li><i class="fas fa-mountain"></i> Mountain Climbing</li>
+            <li><i class="fas fa-tram"></i> Scenic Railway Tours</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- USA -->
+      <div class="destination-card animated delay-1">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29" alt="Grand Canyon">
+          <div class="card-badge">Nature</div>
+        </div>
+        <div class="card-content">
+          <h3>Grand Canyon, USA</h3>
+          <p>Explore the majestic Grand Canyon with its stunning vistas, river rafting, and incredible hiking trails.</p>
+          <ul class="activities-list">
+            <li><i class="fas fa-water"></i> White-water Rafting</li>
+            <li><i class="fas fa-hiking"></i> Rim-to-Rim Hiking</li>
+            <li><i class="fas fa-helicopter"></i> Helicopter Tours</li>
+            <li><i class="fas fa-camera"></i> Photography Expeditions</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Iceland -->
+      <div class="destination-card animated delay-2">
+        <div class="card-image">
+          <img src="https://plus.unsplash.com/premium_photo-1673254850380-ff70514979fe?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aWNlbGFuZCUyMHdhbGxwYXBlcnxlbnwwfHwwfHx8MA%3D%3D" alt="Iceland Aurora">
+          <div class="card-badge">Northern Lights</div>
+        </div>
+        <div class="card-content">
+          <h3>Iceland</h3>
+          <p>Discover the land of fire and ice with its glaciers, geysers, and the spectacular Northern Lights.</p>
+          <ul class="activities-list">
+            <li><i class="fas fa-snowflake"></i> Glacier Hiking</li>
+            <li><i class="fas fa-water"></i> Geothermal Spa Tours</li>
+            <li><i class="fas fa-cloud-moon"></i> Northern Lights Viewing</li>
+            <li><i class="fas fa-volcano"></i> Volcano Exploration</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Berlin -->
+      <div class="destination-card animated delay-2">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1560969184-10fe8719e047" alt="Berlin">
+          <div class="card-badge">Urban Adventure</div>
+        </div>
+        <div class="card-content">
+          <h3>Berlin, Germany</h3>
+          <p>Experience the vibrant culture and history of Berlin with its unique blend of urban exploration and outdoor activities.</p>
+          <ul class="activities-list">
+            <li><i class="fas fa-bicycle"></i> City Bike Tours</li>
+            <li><i class="fas fa-landmark"></i> Historical Site Exploration</li>
+            <li><i class="fas fa-tree"></i> Urban Park Adventures</li>
+            <li><i class="fas fa-utensils"></i> Food & Culture Tours</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comparison Table -->
+    <section class="section-title animated">
+      <h2>Destination Comparison</h2>
+    </section>
+
+    <div class="table-container animated">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Destination</th>
+            <th>Best Time to Visit</th>
+            <th>Adventure Level</th>
+            <th>Budget (USD)</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Swiss Alps</td>
+            <td>June - September</td>
+            <td>High</td>
+            <td>$3000+</td>
+            <td><span class="rating">★★★★★</span></td>
+          </tr>
+          <tr>
+            <td>Grand Canyon</td>
+            <td>March - May</td>
+            <td>Medium-High</td>
+            <td>$2000</td>
+            <td><span class="rating">★★★★☆</span></td>
+          </tr>
+          <tr>
+            <td>Iceland</td>
+            <td>September - March</td>
+            <td>High</td>
+            <td>$2500</td>
+            <td><span class="rating">★★★★★</span></td>
+          </tr>
+          <tr>
+            <td>Berlin</td>
+            <td>May - September</td>
+            <td>Medium</td>
+            <td>$1800</td>
+            <td><span class="rating">★★★★☆</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Drag & Drop Section -->
+    <section class="section-title animated">
+      <h2>Choose Your Favorites</h2>
+      <p>Drag and drop your favorite destination images to the favorites area</p>
+    </section>
+
+    <div class="drag-drop-section animated">
+      <div class="drag-container">
+        <div class="drag-source">
+          <div class="drag-item" draggable="true">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4" alt="Swiss Alps" data-caption="Swiss Alps">
+          </div>
+          <div class="drag-item" draggable="true">
+            <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29" alt="Grand Canyon" data-caption="Grand Canyon, USA">
+          </div>
+          <div class="drag-item" draggable="true">
+            <img src="https://plus.unsplash.com/premium_photo-1673254850380-ff70514979fe?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aWNlbGFuZCUyMHdhbGxwYXBlcnxlbnwwfHwwfHx8MA%3D%3D" alt="Iceland Aurora" data-caption="Iceland Northern Lights">
+          </div>
+          <div class="drag-item" draggable="true">
+            <img src="https://images.unsplash.com/photo-1560969184-10fe8719e047" alt="Berlin" data-caption="Berlin, Germany">
+          </div>
+        </div>
+        
+        <div class="drag-target" id="drag-target">
+          <i class="fas fa-heart"></i>
+          <p>Drag your favorite destinations here</p>
+          <div class="favorites-grid" id="favorites-grid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <section class="section-title animated">
+      <h2>Adventure Gallery</h2>
+      <p>Click on any image to view it in full size</p>
+    </section>
+
+    <div class="gallery">
+      <div class="gallery-item" data-src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4" data-caption="Swiss Alps">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4" alt="Swiss Alps">
+      </div>
+      <div class="gallery-item" data-src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29" data-caption="Grand Canyon, USA">
+        <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29" alt="Grand Canyon">
+      </div>
+      <div class="gallery-item" data-src="https://plus.unsplash.com/premium_photo-1673254850380-ff70514979fe?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aWNlbGFuZCUyMHdhbGxwYXBlcnxlbnwwfHwwfHx8MA%3D%3D" data-caption="Iceland Northern Lights">
+        <img src="https://plus.unsplash.com/premium_photo-1673254850380-ff70514979fe?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aWNlbGFuZCUyMHdhbGxwYXBlcnxlbnwwfHwwfHx8MA%3D%3D" alt="Iceland Aurora">
+      </div>
+      <div class="gallery-item" data-src="https://images.unsplash.com/photo-1560969184-10fe8719e047" data-caption="Berlin, Germany">
+        <img src="https://images.unsplash.com/photo-1560969184-10fe8719e047" alt="Berlin">
+      </div>
+      <div class="gallery-item" data-src="https://images.unsplash.com/photo-1578662996442-48f60103fc96" data-caption="Interlaken, Switzerland">
+        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96" alt="Interlaken">
+      </div>
+      <div class="gallery-item" data-src="https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5" data-caption="Yosemite National Park, USA">
+        <img src="https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5" alt="Yosemite">
+      </div>
+    </div>
+
+    <!-- Trip Planner -->
+    <section class="section-title animated">
+      <h2>Plan Your Adventure</h2>
+    </section>
+
+    <div class="trip-planner animated">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="destination">Choose Your Adventure:</label>
+          <select id="destination" name="destination">
+            <option value="">--Select Destination--</option>
+            <option value="switzerland">Swiss Alps</option>
+            <option value="usa">Grand Canyon, USA</option>
+            <option value="iceland">Iceland</option>
+            <option value="berlin">Berlin, Germany</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="season">Preferred Travel Season:</label>
+          <select id="season" name="season">
+            <option value="">--Select Season--</option>
+            <option value="spring">Spring</option>
+            <option value="summer">Summer</option>
+            <option value="autumn">Autumn</option>
+            <option value="winter">Winter</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="trip-date">Planned Trip Date:</label>
+          <input type="date" id="trip-date" name="trip-date">
+        </div>
+
+        <div class="form-group">
+          <label for="travelers">Number of Travelers:</label>
+          <select id="travelers" name="travelers">
+            <option value="1">1 Person</option>
+            <option value="2">2 People</option>
+            <option value="3">3 People</option>
+            <option value="4">4 People</option>
+            <option value="4+">4+ People</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="budget">Budget Preference: <span id="budget-output" class="budget-output">$3000</span></label>
+          <input type="range" id="budget" name="budget" min="1000" max="5000" step="100" value="3000" class="budget-slider">
+        </div>
+
+        <div class="form-group">
+          <label for="activities">Preferred Activities:</label>
+          <textarea id="activities" name="activities" rows="3" placeholder="Hiking, skiing, sightseeing..."></textarea>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">Plan My Adventure</button>
+    </div>
+
+    <!-- Media Section -->
+    <div class="media-section">
+      <div class="media-card animated">
+        <h3>Adventure Soundtrack</h3>
+        <p>Get in the mood with our adventure soundtrack</p>
+        <audio controls>
+          <source src="The Life Of Ram (2018 Tamil) - MassTamilan.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+
+      <div class="media-card animated">
+        <h3>Adventure Video</h3>
+        <p>Watch this exciting adventure video</p>
+        <video controls poster="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b">
+          <source src="Vid1 - Made with Clipchamp.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <div class="close-lightbox">&times;</div>
+      <img src="" alt="" id="lightbox-img">
+      <p class="lightbox-caption" id="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>TerraQuest</h3>
+        <p>Your adventure travel experts, providing unforgettable experiences in the world's most exciting destinations.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Adventure Lane, Mountain View, CA</p>
+        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+        <p><i class="fas fa-envelope"></i> info@terraquest.com</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Newsletter</h3>
+        <p>Subscribe to our newsletter for the latest adventure updates and exclusive offers.</p>
+        <form>
+          <div class="form-group">
+            <input type="email" placeholder="Your Email Address" required>
+          </div>
+          <button type="submit" class="submit-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <p>&copy; 2025 TerraQuest Adventure Travel. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Budget slider functionality
+    const budgetSlider = document.getElementById('budget');
+    const budgetOutput = document.getElementById('budget-output');
+    
+    budgetSlider.addEventListener('input', function() {
+      budgetOutput.textContent = '$' + this.value;
+    });
+
+    // Form submission
+    document.querySelector('.submit-btn').addEventListener('click', function(e) {
+      e.preventDefault();
+      alert('Your adventure has been planned! Check your email for details.');
+    });
+
+    // Animation on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const animatedElements = document.querySelectorAll('.animated');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.visibility = 'visible';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      animatedElements.forEach(element => {
+        element.style.visibility = 'hidden';
+        observer.observe(element);
+      });
+    });
+
+    // Drag and Drop functionality
+    const dragItems = document.querySelectorAll('.drag-item');
+    const dragTarget = document.getElementById('drag-target');
+    const favoritesGrid = document.getElementById('favorites-grid');
+
+    let draggedItem = null;
+
+    // Add event listeners for drag items
+    dragItems.forEach(item => {
+      item.addEventListener('dragstart', function(e) {
+        draggedItem = this;
+        setTimeout(() => {
+          this.style.opacity = '0.5';
+        }, 0);
+      });
+
+      item.addEventListener('dragend', function() {
+        this.style.opacity = '1';
+        dragTarget.classList.remove('highlight');
+      });
+    });
+
+    // Add event listeners for drop target
+    dragTarget.addEventListener('dragover', function(e) {
+      e.preventDefault();
+      this.classList.add('highlight');
+    });
+
+    dragTarget.addEventListener('dragleave', function() {
+      this.classList.remove('highlight');
+    });
+
+    dragTarget.addEventListener('drop', function(e) {
+      e.preventDefault();
+      this.classList.remove('highlight');
+      
+      if (draggedItem) {
+        // Create a new image element for the favorites grid
+        const favImage = document.createElement('div');
+        favImage.className = 'drag-item';
+        favImage.innerHTML = draggedItem.innerHTML;
+        favoritesGrid.appendChild(favImage);
+        
+        // Remove the original dragged item
+        draggedItem.remove();
+        draggedItem = null;
+        
+        // Update the message if it's the first item
+        if (favoritesGrid.children.length === 1) {
+          dragTarget.querySelector('p').textContent = 'Your favorite destinations:';
+        }
+      }
+    });
+
+    // Lightbox functionality
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const closeLightbox = document.querySelector('.close-lightbox');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    // Add click event to gallery items
+    galleryItems.forEach(item => {
+      item.addEventListener('click', function() {
+        const imgSrc = this.getAttribute('data-src');
+        const caption = this.getAttribute('data-caption');
+        
+        lightboxImg.src = imgSrc;
+        lightboxCaption.textContent = caption;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
+      });
+    });
+
+    // Close lightbox when clicking on close button
+    closeLightbox.addEventListener('click', function() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = ''; // Re-enable scrolling
+    });
+
+    // Close lightbox when clicking outside the image
+    lightbox.addEventListener('click', function(e) {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = ''; // Re-enable scrolling
+      }
+    });
+
+    // Close lightbox with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = ''; // Re-enable scrolling
+      }
+    });
+  </script>
+</body>
+</html>
